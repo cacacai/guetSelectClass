@@ -25,7 +25,8 @@
     curl_setopt($ch,CURLOPT_COOKIEFILE,$cookieFile);
     $contents=curl_exec($ch);
     curl_close($ch);
-    return $contents;
+    $text=mb_convert_encoding($contents,"utf8","gb2312");
+    return $text;
   }
 
   /*
@@ -77,6 +78,8 @@
 
   /*
    * Ã·»°øŒ∫≈
+   *
+   *
    */
   if (empty($classCode)&&empty($inputCode))
   {
