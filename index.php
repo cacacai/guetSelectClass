@@ -14,13 +14,13 @@
 
 </head>
 <?php
-  /**
+/*  /**
    * Created by PhpStorm.
    * User: guet
    * Date: 2017/7/15
    * Time: 13:02
    */
-  $mysql_server_name='localhost'; //改成自己的mysql数据库服务器
+ /* $mysql_server_name='localhost'; //改成自己的mysql数据库服务器
   $mysql_username='cai'; //改成自己的mysql数据库用户名
   $mysql_password='123456abc'; //改成自己的mysql数据库密码
   $mysql_database='guet_curl'; //改成自己的mysql数据库名
@@ -29,7 +29,7 @@
   mysql_select_db($mysql_database); //打开数据库
   $sql ="SELECT * FROM `all`"; //SQL语句
  // $sql2 ="select 课程代码 from table1 "; //SQL语句
-  $result = mysql_query($sql,$conn); //查询
+  $result = mysql_query($sql,$conn); //查询*/
 ?>
 
 <body>
@@ -64,7 +64,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    while(@$row = mysql_fetch_array($result))
+/*                    while(@$row = mysql_fetch_array($result))
                     {
                       echo "<tr>";
                       echo "<td>".$row['name']." </td>"; //排版代码
@@ -74,7 +74,7 @@
                       echo "<td><input type='radio'  name='classCode' value='".$row['code']."' /> </td>"; //排版代码
                       echo "</tr>";
                     }
-                  ?>
+                  */?>
                 </tbody>
               </table>
             </div>
