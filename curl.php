@@ -3,8 +3,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ñ¡¿Î</title>
-  <meta name="description" content="¹ðÁÖµç×Ó¿Æ¼¼´óÑ§">
+  <title>é€‰è¯¾</title>
+  <meta name="description" content="æ¡‚æž—ç”µå­ç§‘æŠ€å¤§å­¦">
   <meta name="cacacai" content="Hello">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -14,9 +14,9 @@
 
 <?php
   /*
-   * µÇÂ½ºógetÊý¾Ý
+   * ç™»é™†åŽgetæ•°æ®
    */
-  ini_set('max_execution_time', '0');  //²»ÔÊÐí³¬Ê±
+  ini_set('max_execution_time', '0');  //ä¸å…è®¸è¶…æ—¶
   function curlGetAfterLogin($url,$cookieFile)
   {
     $ch=curl_init($url);
@@ -30,14 +30,14 @@
   }
 
   /*
-   * µÇÂ½ºópostÊý¾Ý
+   * ç™»é™†åŽpostæ•°æ®
    */
   function curlPostAfterLogin($url,$cookieFile,$postFile)
   {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postFile);         //Ìá½»·½Ê½Îªpost
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postFile);         //æäº¤æ–¹å¼ä¸ºpost
     curl_setopt($ch, CURLOPT_COOKIEFILE, $cookieFile);
     $contents=curl_exec($ch);
     curl_close($ch);
@@ -45,9 +45,9 @@
   }
 
   /*
-   * µÇÂ½»ñÈ¡cookie
+   * ç™»é™†èŽ·å–cookie
    */
-  $postUrl="http://bkjw2.guet.edu.cn/student/public/login.asp?mCode=000703";
+  $postUrl="http://xk.cacacai.cn:8080/student/public/login.asp?mCode=000703";
   $cookieFile=dirname(__FILE__)."/temp.cookie";
   $userName=$_POST['username'];
   $userPwd=$_POST['userPwd'];
@@ -62,28 +62,28 @@
   curl_exec($ch);curl_close($ch);
 
   /*
-   * »ñÈ¡¸öÈËÐÅÏ¢
+   * èŽ·å–ä¸ªäººä¿¡æ¯
    */
-//  $urlInfo="http://bkjw2.guet.edu.cn/student/Info.asp";
-//  $contents=curlGetAfterLogin($urlInfo,$cookieFile);
-//  print_r($contents);
+  $urlInfo="http://xk.cacacai.cn:8080/student/Info.asp";
+  $contents=curlGetAfterLogin($urlInfo,$cookieFile);
+  print_r($contents);
 
   /*
-   * Ë¢¿Î
+   * åˆ·è¯¾
    */
 
-  $classCode=$_POST['classCode'];//µã»÷Ñ¡ÔñµÄ¿ÎºÅ
-  $inputCode=$_POST['inputCode'];  //ÊÖ¶¯ÊäÈëµÄ¿ÎºÅ
-  $isNormal=$_POST['isNormal'];   //ÊÇ·ñÎªÖØÐÞ
+  $classCode=$_POST['classCode'];//ç‚¹å‡»é€‰æ‹©çš„è¯¾å·
+  $inputCode=$_POST['inputCode'];  //æ‰‹åŠ¨è¾“å…¥çš„è¯¾å·
+  $isNormal=$_POST['isNormal'];   //æ˜¯å¦ä¸ºé‡ä¿®
 
   /*
-   * ÌáÈ¡¿ÎºÅ
+   * æå–è¯¾å·
    *
    *
    */
   if (empty($classCode)&&empty($inputCode))
   {
-    echo "ÄãÃ»ÓÐÑ¡Ôñ»òÕßÊäÈë¿ÎºÅ";
+    echo "ä½ æ²¡æœ‰é€‰æ‹©æˆ–è€…è¾“å…¥è¯¾å·";
     exit();
   }
   if ($classCode==''&&$inputCode!='')
@@ -92,11 +92,11 @@
   }
 
   /*
-   * ÅÐ¶ÏÖØÐÞ»¹ÊÇÕý³£Ñ¡¿Î
+   * åˆ¤æ–­é‡ä¿®è¿˜æ˜¯æ­£å¸¸é€‰è¯¾
    */
-  $selectType="%D5%FD%B3%A3";  //ÕâÊÇÕý³£µÄ
+  $selectType="%D5%FD%B3%A3";  //è¿™æ˜¯æ­£å¸¸çš„
 
-  //ÖØÐÞµÄ
+  //é‡ä¿®çš„
   if (!$isNormal)
   {
     $selectType="%D6%D8%D0%DE";
@@ -105,15 +105,15 @@
   echo urldecode("$selectType");
 
   /*
-   * ¹¹Ôì²éÑ¯Óï¾ä
+   * æž„é€ æŸ¥è¯¢è¯­å¥
    */
   $textbookCode="textbook".$classCode;
-  $urlPublicClass="http://bkjw2.guet.edu.cn/student/select.asp";
+  $urlPublicClass="http://xk.cacacai.cn:8080/student/select.asp";
   $postFile="spno=000000&selecttype=".$selectType."&testtime=&course=".$classCode."&".$textbookCode."=0&lwBtnselect=%CC%E1%BD%BB";
   //echo urldecode($postFile);
 
   /*
-   * Ñ­»·Ö´ÐÐ²éÑ¯Óï¾ä
+   * å¾ªçŽ¯æ‰§è¡ŒæŸ¥è¯¢è¯­å¥
    */
   while (1)
   {

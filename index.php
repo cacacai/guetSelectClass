@@ -4,9 +4,9 @@
    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ˢͨʶ��</title>
+  <title>刷通识课</title>
 
-  <meta name="description" content="���ֵ��ӿƼ���ѧѡ��">
+  <meta name="description" content="桂林电子科技大学选课">
   <meta name="cacacai" content="Hello!">
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -20,16 +20,16 @@
    * Date: 2017/7/15
    * Time: 13:02
    */
- /* $mysql_server_name='localhost'; //�ĳ��Լ���mysql���ݿ������
-  $mysql_username='cai'; //�ĳ��Լ���mysql���ݿ��û���
-  $mysql_password='123456abc'; //�ĳ��Լ���mysql���ݿ�����
-  $mysql_database='guet_curl'; //�ĳ��Լ���mysql���ݿ���
-  @$conn=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) or die("error connecting") ; //�������ݿ�
-  mysql_query("set names 'gbk'"); //���ݿ�������� Ӧ����������ݿ���뱣��һ��
-  mysql_select_db($mysql_database); //�����ݿ�
-  $sql ="SELECT * FROM `all`"; //SQL���
- // $sql2 ="select �γ̴��� from table1 "; //SQL���
-  $result = mysql_query($sql,$conn); //��ѯ*/
+ /* $mysql_server_name='localhost'; //改成自己的mysql数据库服务器
+  $mysql_username='cai'; //改成自己的mysql数据库用户名
+  $mysql_password='123456abc'; //改成自己的mysql数据库密码
+  $mysql_database='guet_curl'; //改成自己的mysql数据库名
+  @$conn=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) or die("error connecting") ; //连接数据库
+  mysql_query("set names 'gbk'"); //数据库输出编码 应该与你的数据库编码保持一致
+  mysql_select_db($mysql_database); //打开数据库
+  $sql ="SELECT * FROM `all`"; //SQL语句
+ // $sql2 ="select 课程代码 from table1 "; //SQL语句
+  $result = mysql_query($sql,$conn); //查询*/
 ?>
 
 <body>
@@ -37,7 +37,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h3 contenteditable="true" class="text-center text-success">�ű�ѡ��</h3>
+      <h3 contenteditable="true" class="text-center text-success">脚本选课</h3>
       <form method="post" action="curl.php" class="form-horizontal" role="form">
         <div class="container-fluid">
           <!--<div class="row-fluid">
@@ -46,19 +46,19 @@
                 <thead>
                 <tr>
                   <th>
-                    ͨʶ������()
+                    通识课名称()
                   </th>
                   <th>
-                    ��ʦ
+                    老师
                   </th>
                   <th>
-                    ���
+                    类别
                   </th>
                   <th>
-                    ѧ��
+                    学分
                   </th>
                   <th>
-                    ѡ��
+                    选择
                   </th>
                 </tr>
                 </thead>
@@ -67,11 +67,11 @@
 /*                    while(@$row = mysql_fetch_array($result))
                     {
                       echo "<tr>";
-                      echo "<td>".$row['name']." </td>"; //�Ű����
-                      echo "<td>".$row['teacher']." </td>"; //�Ű����
-                      echo "<td>".$row['fenlei']." </td>"; //�Ű����
-                      echo "<td>".$row['dep']." </td>"; //�Ű����
-                      echo "<td><input type='radio'  name='classCode' value='".$row['code']."' /> </td>"; //�Ű����
+                      echo "<td>".$row['name']." </td>"; //排版代码
+                      echo "<td>".$row['teacher']." </td>"; //排版代码
+                      echo "<td>".$row['fenlei']." </td>"; //排版代码
+                      echo "<td>".$row['dep']." </td>"; //排版代码
+                      echo "<td><input type='radio'  name='classCode' value='".$row['code']."' /> </td>"; //排版代码
                       echo "</tr>";
                     }
                   */?>
@@ -79,7 +79,7 @@
               </table>
             </div>
           </div>
-		  û������Ҫ�Ŀγ̣�
+		  没有你需要的课程？
         </div>-->
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">
@@ -89,21 +89,21 @@
           <div class="col-sm-10">
 
             <input name="inputCode" value='' type="text" class="form-control" id="inputEmail3">
-            �ֶ�����γ̴��루����������̸�����磩(1712349)�е�1712349��
+            手动输入课程代码（例：天文漫谈（网络）(1712349)中的1712349）
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">
-            �Ƿ�Ϊ����(ѡ���޿��Ա���γ̳�ͻ)
+            是否为重修(选重修可以避免课程冲突)
           </label>
           <div class="col-sm-10">
-            ��<input type='radio'  name='isNormal' value='0' />
-            ��<input type='radio' checked="checked" name='isNormal' value='1' />
+            是<input type='radio'  name='isNormal' value='0' />
+            否<input type='radio' checked="checked" name='isNormal' value='1' />
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">
-            ����ϵͳ�˺�
+            教务系统账号
           </label>
           <div class="col-sm-10">
             <input name="username" type="text" class="form-control" id="inputEmail3">
@@ -111,7 +111,7 @@
         </div>
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">
-            ����
+            密码
           </label>
           <div class="col-sm-10">
             <input name="userPwd" type="password" class="form-control" id="inputPassword3">
@@ -120,7 +120,7 @@
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">
-              ��½
+              登陆
             </button>
           </div>
         </div>
